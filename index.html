@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agendar Consulta Médica</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f8ff;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .container {
+      background-color: #ffffff;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+    h1 {
+      text-align: center;
+      color: #2a7ab9;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      margin-bottom: 0.25rem;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 1.5rem;
+      background-color: #2a7ab9;
+      color: white;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 0.5rem;
+      width: 100%;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1e5f8a;
+    }
+    .confirmation {
+      margin-top: 1rem;
+      color: green;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Agendar Consulta</h1>
+    <form id="appointmentForm">
+      <label for="name">Nombre completo:</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="specialty">Especialidad:</label>
+      <select id="specialty" name="specialty" required>
+        <option value="">Selecciona una especialidad</option>
+        <option value="medicina_general">Medicina General</option>
+        <option value="pediatria">Pediatría</option>
+        <option value="dermatologia">Dermatología</option>
+        <option value="psicologia">Psicología</option>
+      </select>
+
+      <label for="date">Fecha de la cita:</label>
+      <input type="date" id="date" name="date" required />
+
+      <button type="submit">Confirmar Cita</button>
+    </form>
+    <div class="confirmation" id="confirmationMessage"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById('appointmentForm');
+    const confirmation = document.getElementById('confirmationMessage');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      const name = form.name.value;
+      const date = form.date.value;
+      const specialty = form.specialty.value;
+      confirmation.textContent = `¡Gracias, ${name}! Tu cita para ${specialty.replace('_', ' ')} ha sido agendada para el día ${date}.`;
+      form.reset();
+    });
+  </script>
+</body>
+</html>
